@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="JavaScript 常被描述为一种基于原型的语言 (prototype-based language)——每个对象拥有一个原型对象，对象以其原型为模板、从原型继承方法和属性。原型对象也可能拥有原型，并从中继承方法和属性，一层一层、以此类推。这种关系常被称为原型链 (prototype chain)，它解释了为何一个对象会拥有定义在其他对象中的属性和方法。准确地说，这些属性和方法定义在Objec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="原型与原型链">
+<meta property="og:url" content="http://yoursite.com/2018/11/18/原型与原型链/index.html">
+<meta property="og:site_name" content="ZhangY">
+<meta property="og:description" content="JavaScript 常被描述为一种基于原型的语言 (prototype-based language)——每个对象拥有一个原型对象，对象以其原型为模板、从原型继承方法和属性。原型对象也可能拥有原型，并从中继承方法和属性，一层一层、以此类推。这种关系常被称为原型链 (prototype chain)，它解释了为何一个对象会拥有定义在其他对象中的属性和方法。准确地说，这些属性和方法定义在Objec">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-11-18T13:23:46.075Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="原型与原型链">
+<meta name="twitter:description" content="JavaScript 常被描述为一种基于原型的语言 (prototype-based language)——每个对象拥有一个原型对象，对象以其原型为模板、从原型继承方法和属性。原型对象也可能拥有原型，并从中继承方法和属性，一层一层、以此类推。这种关系常被称为原型链 (prototype chain)，它解释了为何一个对象会拥有定义在其他对象中的属性和方法。准确地说，这些属性和方法定义在Objec">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/18/原型与原型链/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>原型与原型链 | ZhangY</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZhangY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/18/原型与原型链/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZY">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/IMG_1954.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZhangY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">原型与原型链
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-18 21:22:57 / 修改时间：21:23:46" itemprop="dateCreated datePublished" datetime="2018-11-18T21:22:57+08:00">2018-11-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>JavaScript 常被描述为一种<strong>基于原型的语言</strong> (prototype-based language)——每个对象拥有一个<strong>原型对象</strong>，对象以其原型为模板、从原型继承方法和属性。原型对象也可能拥有原型，并从中继承方法和属性，一层一层、以此类推。这种关系常被称为<strong>原型链</strong> (prototype chain)，它解释了为何一个对象会拥有定义在其他对象中的属性和方法。<br>准确地说，这些属性和方法定义在Object的构造器函数(constructor functions)之上的prototype属性上，而非对象实例本身。<br><a id="more"></a></p>
+</blockquote>
+<h2 id="对象和函数"><a href="#对象和函数" class="headerlink" title="对象和函数"></a>对象和函数</h2><p>全局函数：由浏览器声明的函数。如<strong>Number()</strong>、<strong>String()</strong>、<strong>Boolean()</strong>、<strong>Object()</strong>。<br>在js中，均可通过调用这些公共函数来创建对象。如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'hello'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> num = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">123</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure></p>
+<p>即 <code>var 对象 = new 构造函数();</code></p>
+<h2 id="proto-和-prototype"><a href="#proto-和-prototype" class="headerlink" title="__proto__  和 prototype"></a><code>__proto__</code>  和 <code>prototype</code></h2><h3 id="proto"><a href="#proto" class="headerlink" title="__proto__"></a><code>__proto__</code></h3><p>每个对象有属性 <code>__proto__</code>，指向该对象的构造函数的原型对象，并从原型对象继承属性和方法。</p>
+<p>作用：构成原型链，同样用于实现基于原型的继承。</p>
+<h3 id="prototype"><a href="#prototype" class="headerlink" title="prototype"></a><code>prototype</code></h3><p>每个函数都有一个 <code>prototype</code> 属性，函数的 <code>prototype</code> 属性指向了一个对象，这个对象正是调用该构造函数而创建的实例的原型。</p>
+<p>作用：用来实现基于原型的继承与属性的共享</p>
+<h3 id="二者的关系"><a href="#二者的关系" class="headerlink" title="二者的关系"></a>二者的关系</h3><p><code>__proto__</code> 指向创建这个对象的函数<code>prototype</code> </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>(&#123;<span class="attr">x</span>: <span class="number">1</span>&#125;);</span><br><span class="line">obj .__proto__ === <span class="built_in">Object</span>.prototype <span class="comment">// true</span></span><br><span class="line">obj .toString === obj .__proto__.toString <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>即 <code>被构造的对象.__proto__ === 构造函数.prototype</code></p>
+<h2 id="通过问题理解"><a href="#通过问题理解" class="headerlink" title="通过问题理解"></a>通过问题理解</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">People</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> People()</span><br><span class="line">p.__proto__ === People.prototype </span><br><span class="line">People.__proto__ === <span class="built_in">Function</span>.prototype</span><br><span class="line">People.prototype.__proto__ === <span class="built_in">Object</span>.prototype</span><br></pre></td></tr></table></figure>
+<p>People函数创建了对象p，所以<code>p.__proto__ === People.prototype</code><br>People函数作为对象是由Function函数创建，所以<code>People.__proto__ === Function.prototype</code><br>People.prototype对象由Object函数创建，所以<code>People.prototype.__proto__ === Object.prototype</code></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>实例对象被构造了之后，能够自动引用其构造函数的原型对象。当试图访问这个实例的一个属性时，它不仅仅会在自身上搜寻，还会沿着它的原型链向上搜索，直到找到一个名字匹配的属性或到达原型链的末尾。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 对象 = <span class="keyword">new</span> 函数()</span><br><span class="line">被构造的对象.__proto__ === 构造函数.prototype</span><br><span class="line"></span><br><span class="line"><span class="comment">// 推论</span></span><br><span class="line"><span class="keyword">var</span> number = <span class="keyword">new</span> <span class="built_in">Number</span>()</span><br><span class="line">number.__proto__ = <span class="built_in">Number</span>.prototype</span><br><span class="line"><span class="built_in">Number</span>.__proto__ = <span class="built_in">Function</span>.prototype <span class="comment">// 因为 Number 是 Function 的实例</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> object = <span class="keyword">new</span> <span class="built_in">Object</span>()</span><br><span class="line">object.__proto__ = <span class="built_in">Object</span>.prototype</span><br><span class="line"><span class="built_in">Object</span>.__proto__ = <span class="built_in">Function</span>.prototype <span class="comment">// 因为 Object 是 Function 的实例</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.__proto__ = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="function"><span class="keyword">function</span> = <span class="title">new</span> <span class="title">Function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"><span class="title">function</span>.<span class="title">__proto__</span> = <span class="title">Function</span>.<span class="title">prototype</span></span></span><br><span class="line"><span class="function"><span class="title">Function</span>.<span class="title">__proto__</span> == <span class="title">Function</span>.<span class="title">prototye</span> // 因为 <span class="title">Function</span> 是 <span class="title">Function</span> 的实例</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/16/【js】内存机制/" rel="next" title="【js】内存机制">
+                <i class="fa fa-chevron-left"></i> 【js】内存机制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/02/DOM/" rel="prev" title="DOM">
+                DOM <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/IMG_1954.JPG"
+                alt="ZY" />
+            
+              <p class="site-author-name" itemprop="name">ZY</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象和函数"><span class="nav-number">1.</span> <span class="nav-text">对象和函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#proto-和-prototype"><span class="nav-number">2.</span> <span class="nav-text">__proto__  和 prototype</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#proto"><span class="nav-number">2.1.</span> <span class="nav-text">__proto__</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prototype"><span class="nav-number">2.2.</span> <span class="nav-text">prototype</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二者的关系"><span class="nav-number">2.3.</span> <span class="nav-text">二者的关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过问题理解"><span class="nav-number">3.</span> <span class="nav-text">通过问题理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZY</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Pisces</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

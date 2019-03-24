@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言：css入门，先理清楚内联元素和块级元素分别是个啥。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【css】内联元素和块级元素">
+<meta property="og:url" content="http://yoursite.com/2018/10/20/【css】内联元素和块级元素/index.html">
+<meta property="og:site_name" content="ZhangY">
+<meta property="og:description" content="前言：css入门，先理清楚内联元素和块级元素分别是个啥。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/10/20/【css】内联元素和块级元素/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/20/【css】内联元素和块级元素/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/20/【css】内联元素和块级元素/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/20/【css】内联元素和块级元素/4.png">
+<meta property="og:updated_time" content="2018-11-16T02:42:08.481Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【css】内联元素和块级元素">
+<meta name="twitter:description" content="前言：css入门，先理清楚内联元素和块级元素分别是个啥。">
+<meta name="twitter:image" content="http://yoursite.com/2018/10/20/【css】内联元素和块级元素/1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/20/【css】内联元素和块级元素/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>【css】内联元素和块级元素 | ZhangY</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZhangY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/20/【css】内联元素和块级元素/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZY">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/IMG_1954.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZhangY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【css】内联元素和块级元素
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-20 11:34:22" itemprop="dateCreated datePublished" datetime="2018-10-20T11:34:22+08:00">2018-10-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-16 10:42:08" itemprop="dateModified" datetime="2018-11-16T10:42:08+08:00">2018-11-16</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前言：css入门，先理清楚内联元素和块级元素分别是个啥。<br><a id="more"></a></p>
+<h3 id="内联元素"><a href="#内联元素" class="headerlink" title="内联元素"></a>内联元素</h3><p>内联元素占据它对应标签的边框所包含的空间。<br><img src="1.png" alt=""></p>
+<p>内联元素从左往右流动，若宽度不够，换行继续流动。</p>
+<ul>
+<li>当换行时的内联元素中是中文时，该元素自动分别处于第一行的结尾和第二行的开头。</li>
+<li>当换行时的内联元素中是英文单词，该单词默认不可分开换行，单词自动移到第二行开头显示。<br>若一定要让单词分割，需要对元素的样式进行设置：<ol>
+<li>设置样式的word-break属性为break-all ，此时单词可随意分割换行。</li>
+<li>设置样式的word-break属性为break-word时，只能按单词换行。<br><img src="2.png" alt=""></li>
+</ol>
+</li>
+</ul>
+<p>内联元素高度基本不可测，若内联元素中只包含文字，则其高度根据文字的大小、字体等相关因素决定。当文字的font-size较小时，可用line-height控制内联元素所占高度。</p>
+<p>内联元素的margin只能控制左右边距</p>
+<h4 id="内联元素列表"><a href="#内联元素列表" class="headerlink" title="内联元素列表"></a>内联元素列表</h4><ul>
+<li><a href="https://developer.mozilla.org/zh-CN/HTML/Element/b" title="zh-CN/HTML/Element/b" target="_blank" rel="noopener">b</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/big" title="zh-CN/HTML/Element/big" target="_blank" rel="noopener">big</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/i" title="zh-CN/HTML/Element/i" target="_blank" rel="noopener">i</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/small" title="zh-CN/HTML/Element/small" target="_blank" rel="noopener">small</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/tt" title="zh-CN/HTML/Element/tt" target="_blank" rel="noopener">tt</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/HTML/Element/abbr" title="zh-CN/HTML/Element/abbr" target="_blank" rel="noopener">abbr</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/acronym" title="zh-CN/HTML/Element/acronym" target="_blank" rel="noopener">acronym</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/cite" title="zh-CN/HTML/Element/cite" target="_blank" rel="noopener">cite</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/code" title="zh-CN/HTML/Element/code" target="_blank" rel="noopener">code</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/dfn" title="zh-CN/HTML/Element/dfn" target="_blank" rel="noopener">dfn</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/em" title="zh-CN/HTML/Element/em" target="_blank" rel="noopener">em</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/kbd" title="zh-CN/HTML/Element/kbd" target="_blank" rel="noopener">kbd</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/strong" title="zh-CN/HTML/Element/strong" target="_blank" rel="noopener">strong</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/samp" title="zh-CN/HTML/Element/samp" target="_blank" rel="noopener">samp</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/var" title="zh-CN/HTML/Element/var" target="_blank" rel="noopener">var</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/HTML/Element/a" title="zh-CN/HTML/Element/a" target="_blank" rel="noopener">a</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/bdo" title="zh-CN/HTML/Element/bdo" target="_blank" rel="noopener">bdo</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/br" title="zh-CN/HTML/Element/br" target="_blank" rel="noopener">br</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/Img" title="zh-CN/HTML/Element/Img" target="_blank" rel="noopener">img</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/map" title="zh-CN/HTML/Element/map" target="_blank" rel="noopener">map</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/object" title="zh-CN/HTML/Element/object" target="_blank" rel="noopener">object</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/q" title="zh-CN/HTML/Element/q" target="_blank" rel="noopener">q</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/Script" title="zh-CN/HTML/Element/Script" target="_blank" rel="noopener">script</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/span" title="zh-CN/HTML/Element/span" target="_blank" rel="noopener">span</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/sub" title="zh-CN/HTML/Element/sub" target="_blank" rel="noopener">sub</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/sup" title="zh-CN/HTML/Element/sup" target="_blank" rel="noopener">sup</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/HTML/Element/button" title="zh-CN/HTML/Element/button" target="_blank" rel="noopener">button</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/Input" title="zh-CN/HTML/Element/Input" target="_blank" rel="noopener">input</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/label" title="zh-CN/HTML/Element/label" target="_blank" rel="noopener">label</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/select" title="zh-CN/HTML/Element/select" target="_blank" rel="noopener">select</a>, <a href="https://developer.mozilla.org/zh-CN/HTML/Element/textarea" title="zh-CN/HTML/Element/textarea" target="_blank" rel="noopener">textarea</a></li>
+</ul>
+<h3 id="块级元素"><a href="#块级元素" class="headerlink" title="块级元素"></a>块级元素</h3><p>块级元素占据其父元素（容器）的整个空间。<br><img src="3.png" alt=""></p>
+<p>块级元素每一块都占一行，所有块从上往下依次往下流。<br>块级元素的高度由其内部文档流（文档内元素的流动方向）元素的高度总和决定。<br><img src="4.png" alt=""></p>
+<h4 id="使块级元素在同一行"><a href="#使块级元素在同一行" class="headerlink" title="使块级元素在同一行"></a>使块级元素在同一行</h4><p>在此提供两种实现方法，实际操作中推荐使用第二种：</p>
+<ol>
+<li>设置每个块级元素的display属性为inline-block，同时必须设置该元素的vertical-align属性为top</li>
+<li>设置所有子元素的float属性为left，同时给父元素加 clearfix 类，清除浮动。</li>
+</ol>
+<p>html:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"clearfix"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>块级元素<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>块级元素<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>css:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="行内元素与块级元素对比"><a href="#行内元素与块级元素对比" class="headerlink" title="行内元素与块级元素对比"></a>行内元素与块级元素对比</h3><h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><p>一般情况下，行内元素只能包含数据和其他行内元素。<br>而块级元素可以包含行内元素和其他块级元素。</p>
+<h4 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h4><p>默认情况下，行内元素不会以新行开始，而块级元素会新起一行。</p>
+<h3 id="脱离文档流"><a href="#脱离文档流" class="headerlink" title="脱离文档流"></a>脱离文档流</h3><p>设置元素1相对于其父元素的绝对定位：<br>元素1：position: absolute;<br>元素1的父元素：position: relative;</p>
+<h3 id="box-sizing"><a href="#box-sizing" class="headerlink" title="box-sizing"></a>box-sizing</h3><p>用于更改用于计算元素宽度和高度的默认的 <a href="https://developer.mozilla.org/en-US/docs/CSS/Box_model" title="CSS/Box_model" target="_blank" rel="noopener">CSS 盒子模型</a></p>
+<ul>
+<li><code>content-box</code>  是默认值。如果你设置一个元素的宽为100px，那么这个元素的内容区会有100px宽，并且任何边框和内边距的宽度都会被增加到最后绘制出来的元素宽度中。</li>
+<li><code>border-box</code> 告诉浏览器去理解你设置的边框和内边距的值是包含在width内的。也就是说，如果你将一个元素的width设为100px,那么这100px会包含其它的border和padding，内容区的实际宽度会是width减去border + padding的计算值。</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/20/【css】居中方案/" rel="next" title="【css】居中方案">
+                <i class="fa fa-chevron-left"></i> 【css】居中方案
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/16/【js】数据类型/" rel="prev" title="【js】数据类型">
+                【js】数据类型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/IMG_1954.JPG"
+                alt="ZY" />
+            
+              <p class="site-author-name" itemprop="name">ZY</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#内联元素"><span class="nav-number">1.</span> <span class="nav-text">内联元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内联元素列表"><span class="nav-number">1.1.</span> <span class="nav-text">内联元素列表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#块级元素"><span class="nav-number">2.</span> <span class="nav-text">块级元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使块级元素在同一行"><span class="nav-number">2.1.</span> <span class="nav-text">使块级元素在同一行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行内元素与块级元素对比"><span class="nav-number">3.</span> <span class="nav-text">行内元素与块级元素对比</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内容"><span class="nav-number">3.1.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#格式"><span class="nav-number">3.2.</span> <span class="nav-text">格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脱离文档流"><span class="nav-number">4.</span> <span class="nav-text">脱离文档流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#box-sizing"><span class="nav-number">5.</span> <span class="nav-text">box-sizing</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZY</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Pisces</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="万维网联盟万维网联盟（World Wide Web Consortium，W3C），又称W3C理事会，是万维网的主要国际标准组织。为解决网上应用中不同平台、技术和开发者带来的不兼容问题，保障网上信息的顺利和完整流通，万维网联盟制定了一系列标准并督促网上应用开发者和内容提供者遵循这些标准。标准的内容包括使用语言的规范，开发中使用的导则和解释引擎的行为等等。W3C也制定了包括XML和CSS等的众多影响">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML入门(1)">
+<meta property="og:url" content="http://yoursite.com/2018/10/14/HTML入门/index.html">
+<meta property="og:site_name" content="ZhangY">
+<meta property="og:description" content="万维网联盟万维网联盟（World Wide Web Consortium，W3C），又称W3C理事会，是万维网的主要国际标准组织。为解决网上应用中不同平台、技术和开发者带来的不兼容问题，保障网上信息的顺利和完整流通，万维网联盟制定了一系列标准并督促网上应用开发者和内容提供者遵循这些标准。标准的内容包括使用语言的规范，开发中使用的导则和解释引擎的行为等等。W3C也制定了包括XML和CSS等的众多影响">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-11-16T02:42:08.619Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML入门(1)">
+<meta name="twitter:description" content="万维网联盟万维网联盟（World Wide Web Consortium，W3C），又称W3C理事会，是万维网的主要国际标准组织。为解决网上应用中不同平台、技术和开发者带来的不兼容问题，保障网上信息的顺利和完整流通，万维网联盟制定了一系列标准并督促网上应用开发者和内容提供者遵循这些标准。标准的内容包括使用语言的规范，开发中使用的导则和解释引擎的行为等等。W3C也制定了包括XML和CSS等的众多影响">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/14/HTML入门/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>HTML入门(1) | ZhangY</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZhangY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/14/HTML入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZY">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/IMG_1954.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZhangY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HTML入门(1)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-14 10:08:50" itemprop="dateCreated datePublished" datetime="2018-10-14T10:08:50+08:00">2018-10-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-16 10:42:08" itemprop="dateModified" datetime="2018-11-16T10:42:08+08:00">2018-11-16</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/HTML/" itemprop="url" rel="index"><span itemprop="name">HTML</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="万维网联盟"><a href="#万维网联盟" class="headerlink" title="万维网联盟"></a>万维网联盟</h3><p><a href="https://zh.wikipedia.org/wiki/%E4%B8%87%E7%BB%B4%E7%BD%91%E8%81%94%E7%9B%9F" target="_blank" rel="noopener">万维网联盟</a>（World Wide Web Consortium，W3C），又称W3C理事会，是万维网的主要国际标准组织。<br>为解决网上应用中不同平台、技术和开发者带来的不兼容问题，保障网上信息的顺利和完整流通，万维网联盟制定了一系列标准并督促网上应用开发者和内容提供者遵循这些标准。标准的内容包括使用语言的规范，开发中使用的导则和解释引擎的行为等等。W3C也制定了包括XML和CSS等的众多影响深远的标准规范。<br><a id="more"></a></p>
+<h3 id="MDN"><a href="#MDN" class="headerlink" title="MDN"></a>MDN</h3><p><a href="https://developer.mozilla.org/zh-CN/" target="_blank" rel="noopener">MDN Web Docs</a>（旧称Mozilla Developer Network、Mozilla Developer Center，简称MDN）是一个汇集众多Mozilla基金会产品和网上技术开发文档的免费网站。<br>MDN可以理解为一个工具类网站，所有HTML、CSS、JavaScript方面的内容，都可以在MDN中找到详细介绍。</p>
+<h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><p>HTML(HyperText Markup Language，超文本标记语言)是一种用于创建网页的标准标记语言，与CSS、JavaScript一起被众多网站用于设计令人赏心悦目的网页、网页应用程序以及移动应用程序的用户界面。 </p>
+<h3 id="HTML5和H5"><a href="#HTML5和H5" class="headerlink" title="HTML5和H5"></a>HTML5和H5</h3><p>HTML5是在2014年由W3C宣布制定完成的第五套标准规范，而H5指的是能运行在微信上的网页。</p>
+<blockquote>
+<p>HTML5是一个标准，而H5应该是一个技术合集。<br>(参考：<a href="https://www.zhihu.com/question/30363342" target="_blank" rel="noopener">H5是什么</a>)</p>
+</blockquote>
+<h3 id="空元素"><a href="#空元素" class="headerlink" title="空元素"></a>空元素</h3><p>不可能存在子节点（例如内嵌的元素或者元素内的文本）的元素。<br>在HTML中有以下空元素：</p>
+<ul>
+<li><code>&lt;area&gt;</code>: 在图片上定义一个热点区域，可以关联一个超链接，仅在<code>&lt;map&gt;</code>元素内部使用。</li>
+<li><code>&lt;base&gt;</code>: 指定用于一个文档中包含的所有相对URL的基本URL。一个文档中只能有一个<code>&lt;base&gt;</code>元素。</li>
+<li><code>&lt;br&gt;</code>: 换行</li>
+<li><code>&lt;col&gt;</code>: 定义表格中的列</li>
+<li><code>&lt;colgroup&gt;</code>: 当span属性存在时，该元素为空元素</li>
+<li><code>&lt;command&gt;</code>: 表示一个用户可以调用的命令，此功能已废弃</li>
+<li><code>&lt;embed&gt;</code>: 将外部内容嵌入文档中的指定位置</li>
+<li><code>&lt;hr&gt;</code>: 水平线</li>
+<li><code>&lt;img&gt;</code>: 图像</li>
+<li><code>&lt;input&gt;</code></li>
+<li><code>&lt;keygen&gt;</code>: 此功能已废弃</li>
+<li><code>&lt;link&gt;</code>: </li>
+<li><code>&lt;meta&gt;</code>: </li>
+<li><code>&lt;param&gt;</code>: 为<code>&lt;object&gt;</code>元素定义参数</li>
+<li><code>&lt;source&gt;</code>: 为<code>&lt;picture&gt;</code>、<code>&lt;audio&gt;</code> 和 <code>&lt;video&gt;</code>指定多个媒体资源</li>
+<li><code>&lt;track&gt;</code>: 被当作媒体元素<code>&lt;audio&gt;</code> 和 <code>&lt;video&gt;</code>的子元素来使用</li>
+<li><code>&lt;wbr&gt;</code>: </li>
+</ul>
+<h3 id="可替换元素"><a href="#可替换元素" class="headerlink" title="可替换元素"></a>可替换元素</h3><ol>
+<li>一个内容不受CSS视觉格式化模型控制，CSS渲染模型并不考虑对此内容的渲染，且元素本身一般拥有固有尺寸（宽度，高度，宽高比）的元素，被称之为可替换元素。</li>
+<li>可替换元素就是浏览器根据元素的标签和属性，来决定元素的具体显示内容。</li>
+<li>典型的可替换元素有 <code>&lt;img&gt;</code>、 <code>&lt;object&gt;</code>、 <code>&lt;video&gt;</code> 和表单元素，如<code>&lt;textarea&gt;</code>、 <code>&lt;input&gt;</code>。</li>
+<li>某些元素只在一些特殊情况下表现为可替换元素，例如 <code>&lt;audio&gt;</code> 和 <code>&lt;canvas&gt;</code>。</li>
+</ol>
+<h3 id="HTML常用标签"><a href="#HTML常用标签" class="headerlink" title="HTML常用标签"></a>HTML常用标签</h3><h5 id="DOCTYPE（文档类型声明）"><a href="#DOCTYPE（文档类型声明）" class="headerlink" title="DOCTYPE（文档类型声明）"></a>DOCTYPE（文档类型声明）</h5><p>在HTML中，文档类型声明是必要的，所有文档的头部，都有<code>&lt;!DOCTYPE html&gt;</code>，这个声明是为了确保浏览器按照最佳的相关规范进行渲染，而不是使用一个不符合规范的渲染模式。</p>
+<h5 id="lt-html-gt-元素"><a href="#lt-html-gt-元素" class="headerlink" title="&lt;html&gt; 元素"></a>&lt;html&gt; 元素</h5><p>HTML文档的根元素，一个页面中有且只有一个根元素，所有其他元素必须是此元素的后代。</p>
+<h5 id="lt-head-gt-元素"><a href="#lt-head-gt-元素" class="headerlink" title="&lt;head&gt; 元素"></a>&lt;head&gt; 元素</h5><p>规定文档相关的配置信息（元数据），包括文档的标题，引用的文档样式和脚本等。<br>当<code>&lt;head&gt;</code>元素中什么都没有的时候，可省略。<br>可用于<code>&lt;head&gt;</code>元素内的元素有: <code>&lt;title&gt;, &lt;base&gt;, &lt;link&gt;, &lt;style&gt;, &lt;meta&gt;, &lt;script&gt;, &lt;noscript&gt;, &lt;command&gt;</code></p>
+<h5 id="lt-meta-gt-元素"><a href="#lt-meta-gt-元素" class="headerlink" title="&lt;meta&gt; 元素"></a>&lt;meta&gt; 元素</h5><p>提供有关页面的元信息，比如针对搜索引擎和更新频度的描述和关键词。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta charset=&quot;UTF-8&quot;&gt;   声明当前文档所使用的字符编码</span><br><span class="line">&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html&quot;&gt; 定义文档的MIME TYPE</span><br><span class="line">&lt;meta name=&quot;keywords&quot; content=&quot;HTML,ASP,PHP,SQL&quot;&gt; 定义文档级元数据的名称</span><br></pre></td></tr></table></figure></p>
+<h5 id="lt-title-gt-元素"><a href="#lt-title-gt-元素" class="headerlink" title="&lt;title&gt; 元素"></a>&lt;title&gt; 元素</h5><p>定义文档的标题，显示在浏览器的标题栏或标签页上。它只可以包含文本，若是包含有标签，则包含的任何标签都不会被解释。</p>
+<h5 id="lt-link-gt-元素"><a href="#lt-link-gt-元素" class="headerlink" title="&lt;link&gt; 元素"></a>&lt;link&gt; 元素</h5><p>规定了外部资源与当前文档的关系。 这个元素可用来为导航定义一个关系框架。这个元素最常于链接样式表。</p>
+<h5 id="lt-script-gt-元素"><a href="#lt-script-gt-元素" class="headerlink" title="&lt;script&gt; 元素"></a>&lt;script&gt; 元素</h5><p>用于嵌入或引用可执行脚本。</p>
+<h5 id="lt-body-gt-元素"><a href="#lt-body-gt-元素" class="headerlink" title="&lt;body&gt; 元素"></a>&lt;body&gt; 元素</h5><p>必须是 html 元素的直接子元素，表示文档的内容</p>
+<h5 id="lt-h1-gt-lt-h6-gt-标题元素"><a href="#lt-h1-gt-lt-h6-gt-标题元素" class="headerlink" title="&lt;h1&gt;~ &lt;h6&gt;标题元素"></a>&lt;h1&gt;~ &lt;h6&gt;标题元素</h5><p>标题元素呈现了六个不同的级别的标题，<code>&lt;h1&gt;</code> 级别最高，而 <code>&lt;h6&gt;</code> 级别最低。在使用时，避免跳过某级标题：始终要从 <code>&lt;h1&gt;</code> 开始，接下来依次使用 <code>&lt;h2&gt;</code> 等。</p>
+<h5 id="lt-a-gt-元素"><a href="#lt-a-gt-元素" class="headerlink" title="&lt;a&gt; 元素"></a>&lt;a&gt; 元素</h5><p>可以创建一个到其他网页、文件、同一页面内的位置、电子邮件地址或任何其他URL的超链接。<br>属性：</p>
+<ul>
+<li><code>download</code> 指示浏览器下载URL而不是导航到它，因此将提示用户将其保存为本地文件</li>
+<li><code>href</code>  包含超链接指向的URL或URL片段。<ol>
+<li><code>href=&quot;&quot;</code>  页面刷新</li>
+<li><code>href=&quot;#&quot;</code>  页面锚点变成#，页面滚动到顶部</li>
+<li><code>href=&quot;../index.html&quot;</code>  相对路径</li>
+<li><code>href=&quot;?name=11&quot;</code>  参数</li>
+<li><code>href=&quot;//qq.com&quot;</code>  无协议， 浏览器会根据当前协议，补全无协议链接的协议。如果用 file:// 协议浏览页面，就会访问到 file://qq.com，这是一个不存在的路径，应该尽量不使用 file:// 协议预览网页，以免无协议链接出错</li>
+<li><code>href=&quot;javascript:;&quot;</code>  javascript 伪协议</li>
+</ol>
+</li>
+<li><code>target</code>  指定在何处显示链接的资源。<ol>
+<li><code>_self</code>: 当前页面加载。这个是默认值。</li>
+<li><code>_blank</code>: 新窗口打开</li>
+<li><code>_parent</code>: 加载响应到当前框架的父框架。如果没有父级框架，和_self的行为一致</li>
+<li><code>_top</code>: 加载响应进入顶层框架。如果没有父级框架，和_self的行为一致</li>
+</ol>
+</li>
+</ul>
+<h5 id="比较-lt-strong-gt-与-lt-b-gt-nbsp-nbsp-nbsp-lt-em-gt-与-lt-i-gt"><a href="#比较-lt-strong-gt-与-lt-b-gt-nbsp-nbsp-nbsp-lt-em-gt-与-lt-i-gt" class="headerlink" title="比较&lt;strong&gt;与&lt;b&gt;&nbsp;&nbsp;&nbsp;&lt;em&gt;与&lt;i&gt;"></a>比较&lt;strong&gt;与&lt;b&gt;&nbsp;&nbsp;&nbsp;&lt;em&gt;与&lt;i&gt;</h5><p><code>&lt;strong&gt;</code>: 表示文本十分重要，一般用粗体显示，是一个逻辑状态。<br><code>&lt;b&gt;</code>: 表示样式上的加粗，是一个物理状态。<br><code>&lt;em&gt;</code>: 表示着重强调其内容，把内容呈现为斜体<br><code>&lt;i&gt;</code>: 表示从正常的散文中区分出的文本, 如电影或书籍的名字，一个外来词, 或者当文本指的是一个字的定义，而不是其自身代表的语义。内容呈现为斜体</p>
+<h5 id="lt-img-gt-元素"><a href="#lt-img-gt-元素" class="headerlink" title="&lt;img&gt; 元素"></a>&lt;img&gt; 元素</h5><p>代表文档中的一个图像。</p>
+<ul>
+<li><code>alt</code> 定义描述图像的替换文本。若图像的url错误、图像还未被下载时，用户将看到这个文字。</li>
+<li><code>src</code> 必须，图像的url</li>
+<li><code>title</code> 当鼠标悬停在图片上方时，显示title文字</li>
+</ul>
+<h5 id="lt-ol-gt-amp-lt-ul-gt-列表元素"><a href="#lt-ol-gt-amp-lt-ul-gt-列表元素" class="headerlink" title="&lt;ol&gt; &amp; &lt;ul&gt;列表元素"></a>&lt;ol&gt; &amp; &lt;ul&gt;列表元素</h5><ul>
+<li><code>ol</code> 有序列表</li>
+<li><code>ul</code> 无序列表</li>
+<li>无论是有序列表还是无序列表，只能嵌套<code>li</code>元素，在<code>li</code>元素中可再嵌套其他元素</li>
+</ul>
+<h5 id="定义列表（-lt-dl-gt-lt-dt-gt-lt-dd-gt-）"><a href="#定义列表（-lt-dl-gt-lt-dt-gt-lt-dd-gt-）" class="headerlink" title="定义列表（&lt;dl&gt; &lt;dt&gt; &lt;dd&gt;）"></a>定义列表（&lt;dl&gt; &lt;dt&gt; &lt;dd&gt;）</h5><p><code>dl</code> 表示整个列表，<code>dt</code> 表示一个标题，<code>dd</code> 表示对标题的解释<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">dt</span>&gt;</span>梁静茹<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dd</span>&gt;</span>她是一位歌手<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">dt</span>&gt;</span>彭于晏<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dd</span>&gt;</span>他是一位演员<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">colgroup</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">col</span> <span class="attr">width</span>=<span class="string">"100"</span>&gt;</span><span class="tag">&lt;<span class="name">col</span> <span class="attr">width</span>=<span class="string">"200"</span>&gt;</span><span class="tag">&lt;<span class="name">col</span> <span class="attr">width</span>=<span class="string">"100"</span>&gt;</span><span class="tag">&lt;<span class="name">col</span> <span class="attr">width</span>=<span class="string">"70"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">colgroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span>项目<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>姓名<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>班级<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>分数<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span><span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>小明<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>1<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>94<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span><span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>小红<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>2<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>96<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span>平均分<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span><span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span><span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>95<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tfoot</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span>总分<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span><span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span><span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>190<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tfoot</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>tr</code> table row</li>
+<li><code>td</code> table data</li>
+<li><code>col</code> 定义表格中的列，大部分属性在HTML5中已废弃，现基本很少使用该元素，大多直接对表格进行CSS样式控制</li>
+<li><code>colgroup</code>、<code>thead</code>、<code>tbody</code>、<code>tfoot</code>标签顺序和展示顺序无关</li>
+<li>在table元素改变样式border-collapse:collapse;时，表格的border可合并</li>
+</ul>
+<h5 id="lt-form-gt-元素"><a href="#lt-form-gt-元素" class="headerlink" title="&lt;form&gt; 元素"></a>&lt;form&gt; 元素</h5><p>表示了文档中的一个区域，这个区域包含有交互控制元件，用来向web服务器提交信息。</p>
+<ul>
+<li><code>action</code> 指定请求路径</li>
+<li><code>method</code> 指定请求方法<ol>
+<li><code>post</code>: 指的是 HTTP POST 方法; 表单数据会包含在表单体内然后发送给服务器</li>
+<li><code>get</code>: 指的是 HTTP GET 方法; 表单数据会附加在 action 属性的URI中，并以 ‘?’ 作为分隔符, 然后这样得到的 URI 再发送给服务器</li>
+<li>这个值可以被 <code>&lt;button&gt;</code> 或者 <code>&lt;input&gt;</code> 元素中的 <code>formmethod</code> 属性覆盖</li>
+</ol>
+</li>
+<li><code>target</code>  指示在提交表单之后，在哪里显示收到的回复<ol>
+<li><code>_self</code>: 当前页面重新加载返回值。这个是默认值。</li>
+<li><code>_blank</code>: 新窗口加载返回值</li>
+<li><code>_parent</code>: 在父级的frame中以HTML4或HTML5文档形式加载返回值，如果没有父级的frame，和_self一致</li>
+<li><code>_top</code>: 在当前文档的最高级内加载返回值，如果没有父级，和_self的行为一致。</li>
+</ol>
+</li>
+<li>若form中只有一个按钮<code>&lt;button&gt;</code>且没有定义type属性，则<code>&lt;button&gt;</code>该自动升级为提交按钮；<br>若定义type属性为button，则这个form表单没有提交按钮。</li>
+<li>若form中只有一个input且type为button，则这个表单没有提交按钮；<br>若type为submit时，则为提交按钮。</li>
+<li>submit是唯一能确定form表单能不能点击提交的按钮</li>
+</ul>
+<h5 id="lt-input-gt-元素"><a href="#lt-input-gt-元素" class="headerlink" title="&lt;input&gt; 元素"></a>&lt;input&gt; 元素</h5><p>文本框：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"userName"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>密码框：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"userPwd"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>多选按钮：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"fruit"</span> <span class="attr">value</span>=<span class="string">"apple"</span>/&gt;</span>苹果<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"fruit"</span> <span class="attr">value</span>=<span class="string">"orange"</span>/&gt;</span>橘子<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"fruit"</span> <span class="attr">value</span>=<span class="string">"banana"</span>/&gt;</span>香蕉<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>单选按钮：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"sex"</span> <span class="attr">value</span>=<span class="string">"man"</span>/&gt;</span>男<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"sex"</span> <span class="attr">value</span>=<span class="string">"woman"</span>/&gt;</span>女<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>区间：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"range"</span> <span class="attr">min</span>=<span class="string">"0"</span> <span class="attr">max</span>=<span class="string">"100"</span> <span class="attr">step</span>=<span class="string">"1"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>日期控件：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"date"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>不含时区的时间控件:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"time"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>表单提交按钮：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>表单重置按钮：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"reset"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="lt-select-gt-元素"><a href="#lt-select-gt-元素" class="headerlink" title="&lt;select&gt; 元素"></a>&lt;select&gt; 元素</h5><p>下拉选择框控件，下拉框中的选项为<code>&lt;option&gt;</code>，可以由<code>&lt;optgroup&gt;</code>分组。</p>
+<ul>
+<li><code>required</code>: 规定select的值不可为空</li>
+<li><code>disabled</code>: 用户不可选</li>
+<li><code>selected</code>: 是否已选中</li>
+<li><code>multiple</code>: 是否可多选，默认单选</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/09/HTTP入门/" rel="next" title="HTTP入门">
+                <i class="fa fa-chevron-left"></i> HTTP入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/20/【css】居中方案/" rel="prev" title="【css】居中方案">
+                【css】居中方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/IMG_1954.JPG"
+                alt="ZY" />
+            
+              <p class="site-author-name" itemprop="name">ZY</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#万维网联盟"><span class="nav-number">1.</span> <span class="nav-text">万维网联盟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MDN"><span class="nav-number">2.</span> <span class="nav-text">MDN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML"><span class="nav-number">3.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5和H5"><span class="nav-number">4.</span> <span class="nav-text">HTML5和H5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空元素"><span class="nav-number">5.</span> <span class="nav-text">空元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可替换元素"><span class="nav-number">6.</span> <span class="nav-text">可替换元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML常用标签"><span class="nav-number">7.</span> <span class="nav-text">HTML常用标签</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DOCTYPE（文档类型声明）"><span class="nav-number">7.0.1.</span> <span class="nav-text">DOCTYPE（文档类型声明）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-html-gt-元素"><span class="nav-number">7.0.2.</span> <span class="nav-text">&lt;html&gt; 元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-head-gt-元素"><span class="nav-number">7.0.3.</span> <span class="nav-text">&lt;head&gt; 元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-meta-gt-元素"><span class="nav-number">7.0.4.</span> <span class="nav-text">&lt;meta&gt; 元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-title-gt-元素"><span class="nav-number">7.0.5.</span> <span class="nav-text">&lt;title&gt; 元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-link-gt-元素"><span class="nav-number">7.0.6.</span> <span class="nav-text">&lt;link&gt; 元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-script-gt-元素"><span class="nav-number">7.0.7.</span> <span class="nav-text">&lt;script&gt; 元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-body-gt-元素"><span class="nav-number">7.0.8.</span> <span class="nav-text">&lt;body&gt; 元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-h1-gt-lt-h6-gt-标题元素"><span class="nav-number">7.0.9.</span> <span class="nav-text">&lt;h1&gt;~ &lt;h6&gt;标题元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-a-gt-元素"><span class="nav-number">7.0.10.</span> <span class="nav-text">&lt;a&gt; 元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#比较-lt-strong-gt-与-lt-b-gt-nbsp-nbsp-nbsp-lt-em-gt-与-lt-i-gt"><span class="nav-number">7.0.11.</span> <span class="nav-text">比较&lt;strong&gt;与&lt;b&gt;   &lt;em&gt;与&lt;i&gt;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-img-gt-元素"><span class="nav-number">7.0.12.</span> <span class="nav-text">&lt;img&gt; 元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-ol-gt-amp-lt-ul-gt-列表元素"><span class="nav-number">7.0.13.</span> <span class="nav-text">&lt;ol&gt; &amp; &lt;ul&gt;列表元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定义列表（-lt-dl-gt-lt-dt-gt-lt-dd-gt-）"><span class="nav-number">7.0.14.</span> <span class="nav-text">定义列表（&lt;dl&gt; &lt;dt&gt; &lt;dd&gt;）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#表格"><span class="nav-number">7.0.15.</span> <span class="nav-text">表格</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-form-gt-元素"><span class="nav-number">7.0.16.</span> <span class="nav-text">&lt;form&gt; 元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-input-gt-元素"><span class="nav-number">7.0.17.</span> <span class="nav-text">&lt;input&gt; 元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-select-gt-元素"><span class="nav-number">7.0.18.</span> <span class="nav-text">&lt;select&gt; 元素</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZY</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Pisces</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
