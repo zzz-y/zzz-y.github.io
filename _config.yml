@@ -80,4 +80,4 @@ theme: next-reloaded
 deploy:
   type: git
   repo: https://github.com/zzz-y/zzz-y.github.io.git
-  branch: hexo
+  branch: master
